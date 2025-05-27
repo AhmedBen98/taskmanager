@@ -9,7 +9,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 
-# Désactive les scripts Symfony qui posent problème sur Render
+# Désactive les scripts Symfony qui posent problème sur Renders
 RUN composer config --no-plugins allow-plugins.symfony/flex true
 RUN composer config --no-plugins allow-plugins.symfony/runtime true
 RUN composer config --no-plugins allow-plugins.symfony/scripts false
