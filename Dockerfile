@@ -9,10 +9,9 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 
-# Désactive les scripts Symfony qui posent problème sur Renders
-RUN composer config --no-plugins allow-plugins.symfony/flex true
-RUN composer config --no-plugins allow-plugins.symfony/runtime true
-RUN composer config --no-plugins allow-plugins.symfony/scripts false
+# Autoriser l'exécution des plugins Composer en root (pour Symfony Flex et auto-scripts)
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 RUN composer install --no-dev --optimize-autoloader
 
 CMD ["php", "-S", "0.0.0.0:10000", "-t", "public"]
