@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<style>
+    .jems-form {
+        background: white;
+        border: 2px solid #f73587;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    }
+
+    .jems-btn {
+        background: #f73587;
+        border: none;
+        font-weight: bold;
+    }
+
+    .jems-btn:hover {
+        background: #ff8a00;
+    }
+
+    .jems-link {
+        color: #f73587;
+        font-weight: bold;
+    }
+
+    .jems-link:hover {
+        color: #ff8a00;
+        text-decoration: underline;
+    }
+</style>
+
+{# ✅ Redirection si déjà connecté #}
+{% if app.user %}
+    <script>
+        window.location.href = "{{ path('app_task_index') }}";
+    </script>
+{% endif %}
+
+{# ✅ Alerte erreur popup #}
+{% if error %}
+    <div class="position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 1050; width: 100%; max-width: 500px;">
+        <div class="alert alert-danger alert-dismissible fade show text-center shadow" role="alert">
+            <strong>Erreur :</strong> {{ error.messageKey|trans(error.messageData, 'security') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+        </div>
+    </div>
+{% endif %}
+
+<h1 class="text-center mt-5 text-dark fw-bold">Bienvenue sur <span class="text-danger">TaskManager</span></h1>
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <form method="post" class="jems-form">
+
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                       class="form-control" autocomplete="email" required autofocus>
+            </div>
+
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword"
+                       class="form-control" autocomplete="current-password" required>
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="_remember_me" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
+            </div>
+
+            <button class="btn jems-btn w-100 text-white">Se connecter</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a class="jems-link" href="{{ path('app_register') }}">Pas encore de compte ? Créer un compte</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    setTimeout(() => {
+        document.querySelectorAll('.alert').forEach(alert => {
+            const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+            bsAlert.close();
+        });
+    }, 3000);
+</script>
+
+{% endblock %}

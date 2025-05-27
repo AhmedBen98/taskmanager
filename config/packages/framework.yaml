@@ -13,3 +13,8 @@ when@test:
         test: true
         session:
             storage_factory_id: session.storage.factory.mock_file
+
+# import the debug config only in dev
+when@dev:
+    imports:
+        - { resource: debug.yaml }

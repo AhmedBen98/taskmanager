@@ -1,0 +1,14 @@
+﻿PHPUnit 9.6.23 by Sebastian Bergmann and contributors.
+
+Testing 
+Task Api Controller (App\Tests\Controller\TaskApiController)
+ Ô£ö Index
+ Ô£ö Create and delete task
+
+User Api Controller (App\Tests\Controller\UserApiController)
+ Ô£ö Index
+ Ô£ö Create and delete user
+
+Time: 00:03.080, Memory: 60.00 MB
+
+OK (4 tests, 16 assertions)

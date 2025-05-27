@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur TaskManager{% endblock %}
+
+{% block body %}
+<style>
+    .hero {
+        background: linear-gradient(135deg, #f73587 0%, #ff8a00 100%);
+        color: white;
+        padding: 100px 30px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero img.floating {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        width: 220px;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
+        100% { transform: translateY(0); }
+    }
+
+    .icon-links {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .icon-links a {
+        color: white;
+        font-size: 1.7rem;
+        margin-left: 15px;
+        transition: transform 0.2s;
+    }
+
+    .icon-links a:hover {
+        transform: scale(1.2);
+        color: #ffc24c;
+    }
+
+    .btn-start {
+        margin-top: 40px;
+        font-size: 1.2rem;
+        padding: 12px 25px;
+        background-color: #ffc24c;
+        color: black;
+        border: none;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-start:hover {
+        background-color: #ffb000;
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="hero">
+    <div class="icon-links">
+        <a href="{{ path('app_login') }}" title="Connexion"><i class="bi bi-box-arrow-in-right"></i></a>
+        <a href="{{ path('app_register') }}" title="Créer un compte"><i class="bi bi-person-plus-fill"></i></a>
+    </div>
+
+    <h1 class="display-4 fw-bold">Bienvenue sur <span style="color:#ffc24c">TaskManager</span></h1>
+    <p class="lead">Organisez, suivez et gérez vos tâches plus efficacement.</p>
+
+    <a href="{{ path('app_task_index') }}" class="btn btn-start">Démarrer</a>
+
+    <img src="{{ asset('images/illustration-task.svg') }}" alt="Illustration" class="floating">
+</div>
+{% endblock %}
