@@ -13,6 +13,6 @@ COPY . .
 RUN composer config --no-plugins allow-plugins.symfony/flex true
 RUN composer config --no-plugins allow-plugins.symfony/runtime true
 RUN composer config --no-plugins allow-plugins.symfony/scripts false
-RUN composer install --no-dev --optimize-autoloader --no-scripts
+RUN composer install --no-dev --optimize-autoloader
 
 CMD ["php", "-S", "0.0.0.0:10000", "-t", "public"]
