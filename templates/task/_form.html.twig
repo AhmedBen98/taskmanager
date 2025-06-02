@@ -1,4 +1,35 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="mb-3">
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.title) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.description) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.difficulty) }}
+        {{ form_widget(form.difficulty, {'attr': {'class': 'form-select'}}) }}
+        {{ form_errors(form.difficulty) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.isDone) }}
+        {{ form_widget(form.isDone, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_errors(form.isDone) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.createdAt) }}
+        {{ form_widget(form.createdAt, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.createdAt) }}
+    </div>
+
+    <div class="text-end mt-4">
+        <button type="submit" class="btn btn-primary">Créer</button>
+    </div>
 {{ form_end(form) }}

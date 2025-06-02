@@ -1,5 +1,7 @@
 <?php
 
+// src/Form/TaskForm.php
+
 namespace App\Form;
 
 use App\Entity\Task;
@@ -22,15 +24,16 @@ class TaskForm extends AbstractType
             ->add('difficulty', ChoiceType::class, [
                 'label' => 'Difficulté',
                 'choices' => [
-                    '★☆☆☆☆ (1)' => 1,
-                    '★★☆☆☆ (2)' => 2,
-                    '★★★☆☆ (3)' => 3,
-                    '★★★★☆ (4)' => 4,
-                    '★★★★★ (5)' => 5,
+                    '★☆☆☆☆' => 1,
+                    '★★☆☆☆' => 2,
+                    '★★★☆☆' => 3,
+                    '★★★★☆' => 4,
+                    '★★★★★' => 5,
                 ],
                 'expanded' => true,
                 'multiple' => false,
                 'required' => false,
+                'attr' => ['class' => 'starability-basic'],
             ])
         ;
     }

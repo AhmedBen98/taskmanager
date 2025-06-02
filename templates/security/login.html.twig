@@ -33,14 +33,14 @@
     }
 </style>
 
-{# ✅ Redirection si déjà connecté #}
+{#  Redirection si déjà connecté #}
 {% if app.user %}
     <script>
         window.location.href = "{{ path('app_task_index') }}";
     </script>
 {% endif %}
 
-{# ✅ Alerte erreur popup #}
+{#  Alerte erreur popup #}
 {% if error %}
     <div class="position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 1050; width: 100%; max-width: 500px;">
         <div class="alert alert-danger alert-dismissible fade show text-center shadow" role="alert">
