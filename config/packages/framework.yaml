@@ -1,12 +1,20 @@
-# see https://symfony.com/doc/current/reference/configuration/framework.html
+# config/packages/framework.yaml
 framework:
     secret: '%env(APP_SECRET)%'
 
-    # Note that the session will be started ONLY if you read or write from it.
-    session: true
+    # Configuration du stockage des sessions en base via PdoSessionHandler
+    session:
+        handler_id: session.handler.pdo
+        cookie_secure: auto
+        cookie_samesite: lax
 
-    #esi: true
-    #fragments: true
+# Service pour gérer la session en base MySQL
+services:
+    session.handler.pdo:
+        class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+        arguments:
+            - '%env(resolve:DATABASE_URL)%'
+            - { lock_mode: 0 }
 
 when@test:
     framework:
@@ -14,7 +22,6 @@ when@test:
         session:
             storage_factory_id: session.storage.factory.mock_file
 
-# import the debug config only in dev
 when@dev:
     imports:
         - { resource: debug.yaml }
